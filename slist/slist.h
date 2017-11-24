@@ -43,9 +43,9 @@ private:
 };
 
 template<typename T>
-Slist<T>::~Slist() {
-	claer();
-	delete hd_head;
+inline Slist<T>::~Slist() {
+	clear();
+	delete hb_head;
 }
 
 template<typename T>
@@ -55,7 +55,7 @@ void Slist<T>::clear() {
 }
 
 template<typename T>
-void Slist::erase(int beg, int end) {
+inline void Slist<T>::erase(int beg, int end) {
 	if (beg > hb_size || end > hb_size || beg <= 0 || end <= 0 || beg > end)
 		std::cerr << "error : position out if range!\n";
 	else {
@@ -79,7 +79,7 @@ void Slist::erase(int beg, int end) {
 }
 
 template<typename T>
-T Slist<T>::erase(int pos) {
+inline T Slist<T>::erase(int pos) {
 	assert(pos <= hb_size && pos != 0);
 	Ptrn ptr = hb_head;
 	Ptrn prev = 0;
@@ -97,7 +97,7 @@ T Slist<T>::erase(int pos) {
 }
 
 template<typename T>
-void Slist<T>::insert_after(const T& elem, int pos) {
+inline void Slist<T>::insert_after(const T& elem, int pos) {
 	Ptrn ptr = hb_head;
 	int i = 0;
 	while (i != pos) {
@@ -112,21 +112,22 @@ void Slist<T>::insert_after(const T& elem, int pos) {
 }
 
 template<typename T>
-void Slist<T>::push_front(const T& elem) {
+inline void Slist<T>::push_front(const T& elem) {
 	insert_after(elem, 0);
 }
 
 template<typename T>
-void Slist<T>::push_back(const T& elem) {
+inline void Slist<T>::push_back(const T& elem) {
 	insert_after(elem, hb_size);
+}
 
 template<typename T>
-T Slist<T>::pop_front() {
+inline T Slist<T>::pop_front() {
 	return erase(1);
 }
 
 template<typename T>
-T Slist<T>::pop_back() {
+inline T Slist<T>::pop_back() {
 	return erase(hb_size);
 }
 
@@ -138,15 +139,15 @@ inline T Slist<T>::value(int pos) const {
 		ptr = ptr->next;
 		++i;
 	}
-	return ptr->next;
+	return ptr->element;
 }
 
 template<typename T>
-void Slist<T>::reverse() {
+inline void Slist<T>::reverse() {
 	Ptrn pbeg = hb_head->next;
 	hb_head->next = 0;
 	hb_size = 0;
-	Ptrn ptr = pBeg;
+	Ptrn ptr = pbeg;
 	while (ptr != 0) {
 		push_front(ptr->element);
 		Ptrn ptm = ptr;
