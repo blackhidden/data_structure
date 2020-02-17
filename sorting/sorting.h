@@ -1,5 +1,4 @@
-#ifndef _SORTING_H_INCLUDED
-#define _SORTING_H_INCLUDED
+#pragma once
 
 //---------------bubble sort----------------------
 template<typename T>
@@ -249,4 +248,4 @@ void count_sort(T a[], int n) {
 //------------------------bucket sort-----------------------------
 
 //------------------------radix sort------------------------------
-#endif
+
